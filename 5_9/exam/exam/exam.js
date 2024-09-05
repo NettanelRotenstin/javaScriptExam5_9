@@ -160,6 +160,7 @@ function Mission2(unit) {
     return amountSoldiersToReturn + count
 }
 
+
 function Mission3(newMission,allDetails){
     
     let missionToPass = {eventDate: "",eventDescription:""}
@@ -200,6 +201,11 @@ function Mission5(unit){
     
     let stringToReturn = ``;
 
-    
+    const helpToCross = unit.trainingPrograms
+
+    for (let index = 0; index < helpToCross.length; index++) {
+         stringToReturn += helpToCross[index].duration
+        }
+        return stringToReturn + `weeks`
 }
 
