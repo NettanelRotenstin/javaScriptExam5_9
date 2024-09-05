@@ -138,37 +138,38 @@ let militaryUnit = {
 
 
 function Mission1(unit) {
-    
-    let stringToReturn;
-    
-    stringToReturn += unit.chiefOfStaff.rank
-    
-    stringToReturn += unit.chiefOfStaff.name
-    
-    stringToReturn += unit.chiefOfStaff.contact.phone
-    
+
+    let stringToReturn = ` `;
+
+    stringToReturn += unit.commandStructure.chiefOfStaff.rank + ` `
+
+    stringToReturn += unit.commandStructure.chiefOfStaff.name + ` `
+
+    stringToReturn += unit.commandStructure.chiefOfStaff.contact.phone
+
     return stringToReturn;
 }
- 
+
 
 function Mission2(unit) {
-    
+
     let amountSoldiersToReturn = ` `;
-    
-    const count = unit.keys(personnel).length
+
+    const count = unit.personnel.length
+
 
     return amountSoldiersToReturn + count
 }
 
 
-function Mission3(newMission,allDetails){
-    
-    let missionToPass = {eventDate: "",eventDescription:""}
-    
+function Mission3(newMission, allDetails) {
+
+    let missionToPass = { eventDate: "", eventDescription: "" }
+
     missionToPass.eventDate = allDetails.currentDeployment.startDate;
-    
+
     missionToPass.eventDescription = allDetails.currentDeployment.mission
-    
+
     allDetails.history[history.length] = missionToPass
 
     allDetails.currentDeployment = undefined
@@ -179,33 +180,35 @@ function Mission3(newMission,allDetails){
 }
 
 
-function Mission4(fire,allDetails){
-    
+function Mission4(fire, allDetails) {
+
     const arr = allDetails.equipment.firearms
-    
+
     for (let index = 0; index < arr.length; index++) {
-         
-        if(arr[index].type === fire.type && arr[index].status == fire.status)
-         {
+
+        if (arr[index].type === fire.type && arr[index].status == fire.status) {
             arr[index].quantity += fire.quantity
-            return
-         }
-        
+            return allDetails
         }
-        
-        arr[arr.length] = fire
-        return allDetails
+
+    }
+
+    arr[arr.length] = fire
+    return allDetails
 }
 
-function Mission5(unit){
-    
-    let stringToReturn = ``;
+function Mission5(unit) {
+
+     
+
+    let count = 0;
 
     const helpToCross = unit.trainingPrograms
 
     for (let index = 0; index < helpToCross.length; index++) {
-         stringToReturn += helpToCross[index].duration
-        }
-        return stringToReturn + `weeks`
+        
+        count += helpToCross[index].duration
+    }
+    return count + ` weeks`
 }
 
