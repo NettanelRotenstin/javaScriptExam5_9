@@ -138,21 +138,68 @@ let militaryUnit = {
 
 
 function Mission1(unit) {
+    
     let stringToReturn;
+    
     stringToReturn += unit.chiefOfStaff.rank
+    
     stringToReturn += unit.chiefOfStaff.name
+    
     stringToReturn += unit.chiefOfStaff.contact.phone
+    
     return stringToReturn;
 }
  
 
 function Mission2(unit) {
+    
     let amountSoldiersToReturn = ` `;
+    
     const count = unit.keys(personnel).length
 
     return amountSoldiersToReturn + count
 }
 
-function Mission3(newMission){
+function Mission3(newMission,allDetails){
+    
+    let missionToPass = {eventDate: "",eventDescription:""}
+    
+    missionToPass.eventDate = allDetails.currentDeployment.startDate;
+    
+    missionToPass.eventDescription = allDetails.currentDeployment.mission
+    
+    allDetails.history[history.length] = missionToPass
+
+    allDetails.currentDeployment = undefined
+
+    allDetails.currentDeployment = newMission
+
+    return allDetails
+}
+
+
+function Mission4(fire,allDetails){
+    
+    const arr = allDetails.equipment.firearms
+    
+    for (let index = 0; index < arr.length; index++) {
+         
+        if(arr[index].type === fire.type && arr[index].status == fire.status)
+         {
+            arr[index].quantity += fire.quantity
+            return
+         }
+        
+        }
+        
+        arr[arr.length] = fire
+        return allDetails
+}
+
+function Mission5(unit){
+    
+    let stringToReturn = ``;
+
     
 }
+
